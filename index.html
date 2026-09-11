@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>勤務表作成ツール</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>勤務表作成ツール</h1>
+  <p class="subtitle">ブラウザだけで動く、月次勤務表の作成・集計ツールです</p>
+</header>
+
+<main class="container">
+  <section class="controls no-print">
+    <div class="control-group">
+      <label for="employeeName">氏名</label>
+      <input type="text" id="employeeName" placeholder="例）山田 太郎">
+    </div>
+    <div class="control-group">
+      <label for="targetMonth">対象年月</label>
+      <input type="month" id="targetMonth">
+    </div>
+    <div class="control-group">
+      <label for="breakMinutes">既定の休憩時間（分）</label>
+      <input type="number" id="breakMinutes" min="0" step="5" value="60">
+    </div>
+    <div class="control-buttons">
+      <button id="generateBtn">勤務表を作成</button>
+      <button id="clearBtn" class="secondary">入力をクリア</button>
+      <button id="printBtn" class="secondary">印刷 / PDF出力</button>
+    </div>
+  </section>
+
+  <section id="summary" class="summary" hidden>
+    <div class="summary-item">
+      <span class="summary-label">出勤日数</span>
+      <span class="summary-value" id="workDaysCount">0</span>
+    </div>
+    <div class="summary-item">
+      <span class="summary-label">合計勤務時間</span>
+      <span class="summary-value" id="totalHours">0:00</span>
+    </div>
+  </section>
+
+  <section class="table-wrap">
+    <table id="timesheetTable" hidden>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>曜日</th>
+          <th>出勤時刻</th>
+          <th>退勤時刻</th>
+          <th>休憩(分)</th>
+          <th>実働時間</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody id="timesheetBody"></tbody>
+    </table>
+    <p id="emptyMessage" class="empty-message">対象年月を選んで「勤務表を作成」を押してください。</p>
+  </section>
+</main>
+
+<footer class="app-footer no-print">
+  <p>入力内容はこのブラウザ内にのみ保存されます（サーバーには送信されません）。</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
